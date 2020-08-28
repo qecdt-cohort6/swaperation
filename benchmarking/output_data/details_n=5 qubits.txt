@@ -1,0 +1,1 @@
+{'num_circuit_qubits': 5, 'num_arc_qubits': 5, 'architecture': [(0, 1), (1, 2), (1, 3), (3, 4)], 'initial_mapping': [3, 2, 1, 0, 4], 'final_mapping': [4, 2, 1, 0, 3], 'num_swaps': 1}
