@@ -1,16 +1,20 @@
 # Swaperation
 
-##### A quantum game for solving the qubit routing problem.
+**A quantum game for solving the qubit routing problem.**
 
-This was completed as part of a project completed by Cohort 6 at the [Quantum Engineering Centre for Doctoral Training, University of Bristol](http://www.bristol.ac.uk/quantum-engineering/).
+This was completed as part of a project completed by Cohort 6 at the [Quantum Engineering Centre for Doctoral Training, University of Bristol](http://www.bristol.ac.uk/quantum-engineering/), in the 2019/2020 academic year.
 
 ## About the Game
 
 The purpose of the game is to rewrite a quantum circuit so that it can be run on a given architecture.
 
-Players can click on the nodes of the interactive graph to swap qubits, which corresponds to adding swap gates to the circuit.
+Players can click on the nodes of the interactive graph to swap qubits, which corresponds to relabelling qubits or adding swap gates to the circuit.
 
 The score is determined by how many additional swap gates you added in order to make the circuit runnable on the architecture.
+
+The game outputs a final quantum circuit (via `qiskit`) which can be directly ran on the given architecture.
+
+<img src="gameplay.jpg">
 
 
 ## How to Play
@@ -21,7 +25,7 @@ To play the game you can either clone the repository and directly run the levels
 python level_3.py
 ```
 
-or you can run the `jupyter` notebooks, e.g. using [this binder link](https://mybinder.org/v2/gh/qecdt-cohort6/swaperation/master) to play in the browser.
+or you can run the `jupyter` notebooks, e.g. using [this binder link](https://mybinder.org/v2/gh/jenjaminbones/qgame/master) to play in the browser.
 
 
 ### Instructions
@@ -35,16 +39,16 @@ The game contains two main stages, in both of which the player can click on node
 * **Stage 1**: You can swap any two nodes as many times as you like. This corresponds to relabelling the circuit qubits.
  Because these swaps incur no penalty, it's a good idea to get the circuit as close as possible to lying on the architecture at this stage.
  This corresponds to trying to make all the blue lines lie on top of the red lines. When you are happy, you can click the "Next Gate" button to progress onto the next stage.
-
+ 
  * **Stage 2**: Here the game will cycle over the edges. If the current gate (green line) is lying on top of an architecture connection,
  you can press "Next Gate" to confirm that gate and move onto the next one. If it is not currently lying on any red edge, you must swap more nodes so that it is lying on top of a red edge.
  Each swap incurs a penalty of one point, and will determine your score at the end of the game!
-
+ 
  When all the gates have been cycled over, the game is finished. The outputs of the game are the new circuit, the initial mapping, and the number of swaps used. 
 
 See the `How to Play.ipynb` notebook for a more detailed explanation.
 
-## Repository layout
+### Repository layout
 
 The main code is in `game.py`.  There is a `Game` class which
 is mainly composed of `plot`, which renders the current game as an interactive plot, and `onClick`,
@@ -86,21 +90,39 @@ There are some useful functions in `util.py`.
 
 Quantum circuits are usually designed with the assumption that a two-qubit gate could be applied on any two qubits.
 In reality, real devices have limited connectivity, and so circuits must be recompiled. This usually involves swapping qubits
-(via 3 CNOT) gates until the relevant qubits are now adjacent. We can formalise the problem as follows: 
+(via 3 CNOT) gates until the relevant qubits are now adjacent. See [this recent paper](https://arxiv.org/abs/1902.08091) for a more in-depth explanation. We can formalise the problem as follows: 
 
 Inputs:
 
-* A quantum circuit
-* An architecture graph
+* A quantum circuit.
+* An architecture connectivity graph.
 
 Outputs:
 
 * A new circuit
-* An (initial) qubit labelling
-* Score (number of swaps)
+* An (initial) qubit labelling.
+* Score (number of swaps).
 
-such that
+Such that:
 
 * The new circuit can be directly implemented on the architecture (no further swaps required).
 * The new circuit has the same effect as the original circuit.
 
+By playing _Swaperation_, you can engage with this problem by manually choosing how to perform each gate -- 
+you cannot complete the level until all gates have been allocated! The output circuit can then be ran directly on a quantum computer,
+see the notebooks in `benchmarking` for examples.
+
+# Miscellaneous
+
+For any questions or queries related to this game, please use the following email address: benjamin.jones (at) bristol.ac.uk.
+
+Suggestions or contributions would be more than welcome! Feel free to highlight issues or make pull requests.
+
+
+
+Please also check out two other games created by Cohort 6 at the QECDT in Bristol:
+* [_Zedex_](https://github.com/qecdt-cohort6/zedex), playable [here](https://de-luxham.github.io/web/basic_rules.html): A quantum game for optimising circuits with the ZX calculus.
+* [_Squamble_](https://github.com/qecdt-cohort6/squamble), playable [here](https://naomisolomons.github.io/index_v2.html): A game for exploring quantum probability flows on graphs. 
+
+
+© 2020
