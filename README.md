@@ -39,16 +39,16 @@ The game contains two main stages, in both of which the player can click on node
 * **Stage 1**: You can swap any two nodes as many times as you like. This corresponds to relabelling the circuit qubits.
  Because these swaps incur no penalty, it's a good idea to get the circuit as close as possible to lying on the architecture at this stage.
  This corresponds to trying to make all the blue lines lie on top of the red lines. When you are happy, you can click the "Next Gate" button to progress onto the next stage.
- 
+
  * **Stage 2**: Here the game will cycle over the edges. If the current gate (green line) is lying on top of an architecture connection,
  you can press "Next Gate" to confirm that gate and move onto the next one. If it is not currently lying on any red edge, you must swap more nodes so that it is lying on top of a red edge.
  Each swap incurs a penalty of one point, and will determine your score at the end of the game!
- 
+
  When all the gates have been cycled over, the game is finished. The outputs of the game are the new circuit, the initial mapping, and the number of swaps used. 
 
 See the `How to Play.ipynb` notebook for a more detailed explanation.
 
-### Repository layout
+## Repository layout
 
 The main code is in `game.py`.  There is a `Game` class which
 is mainly composed of `plot`, which renders the current game as an interactive plot, and `onClick`,
@@ -114,7 +114,7 @@ see the notebooks in `benchmarking` for examples.
 
 # Miscellaneous
 
-For any questions or queries related to this game, please use the following email address: benjamin.jones (at) bristol.ac.uk.
+For any questions or queries related to this game, please use the following email address: benjamin (dot) jones (at) bristol.ac.uk.
 
 Suggestions or contributions would be more than welcome! Feel free to highlight issues or make pull requests.
 
