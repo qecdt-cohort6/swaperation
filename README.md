@@ -44,7 +44,7 @@ The game contains two main stages, in both of which the player can click on node
 
 See the `How to Play.ipynb` notebook for a more detailed explanation.
 
-### Repository layout
+## Repository layout
 
 The main code is in `game.py`.  There is a `Game` class which
 is mainly composed of `plot`, which renders the current game as an interactive plot, and `onClick`,
